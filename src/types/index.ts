@@ -25,6 +25,7 @@ export interface Comment {
   likeCount: number
   replyCount: number
   authorProfileImageUrl: string
+  isExpanded?: boolean
 }
 
 export interface CommentsResponse {

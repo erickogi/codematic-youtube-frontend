@@ -1,5 +1,4 @@
 <template>
-
     <div class="comment-list">
         <h3 class="text-xl font-semibold mb-4 text-blue-800">Comments</h3>
         <LoadingSpinner v-if="loading && comments.length === 0" />
@@ -13,7 +12,14 @@
                     <p class="text-sm text-gray-500">{{ new Date(comment.publishedAt).toLocaleString() }}</p>
                 </div>
             </div>
-            <p class="mb-2 text-gray-700">{{ comment.text }}</p>
+            <div class="mb-2 text-gray-700">
+                <p v-if="!comment.isExpanded" class="line-clamp-4">{{ comment.text }}</p>
+                <p v-else>{{ comment.text }}</p>
+                <button v-if="comment.text.split('\n').length > 4" @click="toggleExpand(comment)"
+                    class="text-blue-500 hover:underline mt-2">
+                    {{ comment.isExpanded ? 'Read less' : 'Read more' }}
+                </button>
+            </div>
             <div class="flex text-sm text-gray-500">
                 <span class="mr-4">Likes: {{ comment.likeCount }}</span>
                 <span>Replies: {{ comment.replyCount }}</span>
@@ -44,7 +50,7 @@ export default defineComponent({
         }
     },
     setup(props) {
-        const comments = ref<Comment[]>([]);
+        const comments = ref<(Comment & { isExpanded: boolean })[]>([]);
         const nextPageToken = ref<string | null>(null);
         const loading = ref(false);
         const error = ref<string | null>(null);
@@ -62,10 +68,11 @@ export default defineComponent({
                         pageToken: pageToken
                     }
                 });
+                const newComments = response.data.comments.map(comment => ({ ...comment, isExpanded: false }));
                 if (pageToken) {
-                    comments.value = [...comments.value, ...response.data.comments];
+                    comments.value = [...comments.value, ...newComments];
                 } else {
-                    comments.value = response.data.comments;
+                    comments.value = newComments;
                 }
                 nextPageToken.value = response.data.nextPageToken;
             } catch (err) {
@@ -85,6 +92,10 @@ export default defineComponent({
             img.src = '/default-avatar.png';
         };
 
+        const toggleExpand = (comment: Comment & { isExpanded: boolean }) => {
+            comment.isExpanded = !comment.isExpanded;
+        };
+
         watch(() => props.videoId, () => {
             comments.value = [];
             nextPageToken.value = null;
@@ -93,7 +104,16 @@ export default defineComponent({
             }
         });
 
-        return { comments, nextPageToken, loading, error, loadMore, handleImageError };
+        return { comments, nextPageToken, loading, error, loadMore, handleImageError, toggleExpand };
     }
 });
 </script>
+
+<style>
+.line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+</style>
