@@ -16,7 +16,7 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
 import axios from 'axios';
-import { VideoDetails } from '../types';
+import type { VideoDetails } from '../types';
 import LoadingSpinner from './LoadingSpinner.vue';
 
 export default defineComponent({

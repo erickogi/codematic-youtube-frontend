@@ -31,7 +31,7 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
 import axios from 'axios';
-import { Comment, CommentsResponse } from '../types';
+import type { Comment, CommentsResponse } from '../types';
 import LoadingSpinner from './LoadingSpinner.vue';
 
 export default defineComponent({
