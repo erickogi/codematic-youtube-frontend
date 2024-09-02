@@ -11,17 +11,16 @@ URL: http://164.90.185.174:3010/
 ## Screenshots
 
 Here's how the application looks:
-
-![Main Interface](/details_web.png)
+![Main Interface](./public/details_web.png)
 _Figure 1: Main interface for entering YouTube video ID or URL_ and Display of video details
 
-![Video Details](/comments_web.png)
+![Video Details](./public/comments_web.png)
 _Figure 2: Display of comments_
 
-![Main Interface](/details_mobile.png)
+![Main Interface](./public/details_mobile.png)
 _Figure 1: Mobile Main interface for entering YouTube video ID or URL_ and Display of video details
 
-![Video Details](/comments_mobile.png)
+![Video Details](./public/comments_mobile.png)
 _Figure 2: Display of comments_ Mobile
 
 ## Project Setup
