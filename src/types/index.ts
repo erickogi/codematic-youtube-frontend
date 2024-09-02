@@ -3,6 +3,18 @@ export interface VideoDetails {
   description: string
   viewCount: number
   likeCount: number
+  channelTitle: string
+  thumbnails: {
+    default?: Thumbnail
+    medium?: Thumbnail
+    high?: Thumbnail
+  }
+  publishedAt: string
+}
+interface Thumbnail {
+  url: string
+  width: number
+  height: number
 }
 
 export interface Comment {
