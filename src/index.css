@@ -1,0 +1,49 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+  background-color: #f0f4f8;
+  color: rgb(3, 28, 210);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(3, 28, 210, 0.5) #f0f4f8;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f0f4f8;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(3, 28, 210, 0.5);
+  border-radius: 20px;
+  border: 2px solid #f0f4f8;
+}
+
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.btn-primary {
+  @apply px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 bg-gray-200 text-blue-800 rounded hover:bg-gray-300 transition-colors;
+}
+
+.input-primary {
+  @apply w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 transition-colors;
+}
+
+.card {
+  @apply bg-white p-6 rounded-lg shadow-md;
+}

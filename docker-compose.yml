@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  codematic-frontend-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: codematic-youtube-frontend-image
+    container_name: codematic-youtube-frontend-container
+    ports:
+      - '3010:3010'
+    env_file:
+      - .env
+    network_mode: bridge
